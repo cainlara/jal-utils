@@ -4,12 +4,11 @@ import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
 public final class MessageManager {
-
   private ResourceBundle bundle;
   private String bundleName;
 
-  private MessageManager(final String bundleName) {
-    this.bundleName = bundleName;
+  private MessageManager(final Builder builder) {
+    this.bundleName = builder.bundleName;
   }
 
   public String getMessage(final String key) {
@@ -27,5 +26,17 @@ public final class MessageManager {
     }
 
     return bundle;
+  }
+
+  public static class Builder {
+    private String bundleName;
+
+    public Builder(final String bundleName) {
+      this.bundleName = bundleName;
+    }
+
+    public MessageManager build() {
+      return new MessageManager(this);
+    }
   }
 }

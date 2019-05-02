@@ -6,13 +6,12 @@ import java.util.ResourceBundle;
 
 import javax.swing.ImageIcon;
 
-public class ImageManager {
-
+public final class ImageManager {
   private ResourceBundle bundle;
   private String bundleName;
 
-  private ImageManager(final String bundleName) {
-    this.bundleName = bundleName;
+  private ImageManager(final Builder builder) {
+    this.bundleName = builder.bundleName;
   }
 
   public ImageIcon getImageIcon(final String key) {
@@ -42,5 +41,17 @@ public class ImageManager {
     }
 
     return bundle;
+  }
+
+  public static class Builder {
+    private String bundleName;
+
+    public Builder(final String bundleName) {
+      this.bundleName = bundleName;
+    }
+
+    public ImageManager build() {
+      return new ImageManager(this);
+    }
   }
 }
