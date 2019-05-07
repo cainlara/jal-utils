@@ -15,8 +15,7 @@ public final class StringUtils {
     return instance;
   }
 
-  public boolean isValid(final String text) {
-    return text != null && text.trim().length() > 0;
+  public boolean isBlank(final String text) {
+    return text == null || text.trim().isEmpty();
   }
-
 }

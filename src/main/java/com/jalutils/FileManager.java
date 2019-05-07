@@ -33,7 +33,7 @@ public final class FileManager {
    * @return the fixed file's name ending with the extension specification.
    */
   public String addExtension(final String fileName, final String extension) {
-    if (!StringUtils.getInstance().isValid(fileName)) {
+    if (StringUtils.getInstance().isBlank(fileName)) {
       throw new IllegalArgumentException("FileName can not be null nor empty.");
     }
 
@@ -102,7 +102,7 @@ public final class FileManager {
    *           <code>fileAbsolutePath</code> represents a directory.
    */
   public boolean deleteFile(final String fileAbsolutePath) throws IOException {
-    if (!StringUtils.getInstance().isValid(fileAbsolutePath)) {
+    if (StringUtils.getInstance().isBlank(fileAbsolutePath)) {
       throw new IllegalArgumentException("Invalid file path");
     }
 
@@ -169,7 +169,7 @@ public final class FileManager {
    *           param <code>folderAbsolutePath</code> represents a file.
    */
   public boolean deleteFolder(final String folderAbsolutePath) throws IOException {
-    if (!StringUtils.getInstance().isValid(folderAbsolutePath)) {
+    if (StringUtils.getInstance().isBlank(folderAbsolutePath)) {
       throw new IllegalArgumentException("Invalid directory path");
     }
 
@@ -190,7 +190,7 @@ public final class FileManager {
   public String getFileExtension(final String filePath) {
     String extension = null;
 
-    if (!StringUtils.getInstance().isValid(filePath)) {
+    if (StringUtils.getInstance().isBlank(filePath)) {
       throw new IllegalArgumentException("File path is invalid");
     }
 
@@ -229,7 +229,7 @@ public final class FileManager {
   }
 
   public File getParentFolder(final String filePath) {
-    if (!StringUtils.getInstance().isValid(filePath)) {
+    if (StringUtils.getInstance().isBlank(filePath)) {
       throw new IllegalArgumentException("Invalid file path.");
     }
 
