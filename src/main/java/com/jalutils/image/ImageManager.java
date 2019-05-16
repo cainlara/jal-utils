@@ -9,14 +9,16 @@ import javax.swing.ImageIcon;
 public final class ImageManager {
   private ResourceBundle bundle;
   private String bundleName;
+  private Class<? extends AbstractImageProvider> clazz;
 
   private ImageManager(final Builder builder) {
     this.bundleName = builder.bundleName;
+    this.clazz = builder.clazz;
   }
 
   public ImageIcon getImageIcon(final String key) {
     String path = getFilePath(key);
-    URL imgURL = getClass().getResource(path);
+    URL imgURL = getClazz().getResource(path);
 
     if (imgURL != null) {
       return new ImageIcon(imgURL);
@@ -42,12 +44,18 @@ public final class ImageManager {
 
     return bundle;
   }
+  
+  private Class<? extends AbstractImageProvider> getClazz() {
+    return clazz;
+  }
 
   public static class Builder {
     private String bundleName;
+    private Class<? extends AbstractImageProvider> clazz;
 
-    public Builder(final String bundleName) {
+    public Builder(final String bundleName, final Class<? extends AbstractImageProvider> clazz) {
       this.bundleName = bundleName;
+      this.clazz = clazz;
     }
 
     public ImageManager build() {
