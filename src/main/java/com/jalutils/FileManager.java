@@ -3,7 +3,6 @@ package com.jalutils;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
 /**
@@ -82,10 +81,7 @@ public final class FileManager {
       throw new IOException("Target file can not be null.");
     }
 
-    Path source = sourceFile.toPath();
-    Path target = targetFile.toPath();
-
-    Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+    Files.copy(sourceFile.toPath(), targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
   }
 
   /**
@@ -131,8 +127,7 @@ public final class FileManager {
       throw new IllegalArgumentException("Invalid file path");
     }
 
-    File file2delete = new File(fileAbsolutePath);
-    return deleteFile(file2delete);
+    return deleteFile(new File(fileAbsolutePath));
   }
 
   /**
@@ -196,8 +191,7 @@ public final class FileManager {
       throw new IllegalArgumentException("Invalid directory path");
     }
 
-    File folder2Delete = new File(folderAbsolutePath);
-    return deleteFolder(folder2Delete);
+    return deleteFolder(new File(folderAbsolutePath));
   }
 
   /**
@@ -217,9 +211,7 @@ public final class FileManager {
       throw new IllegalArgumentException("File can not be null");
     }
 
-    String filePath = file.getAbsolutePath();
-
-    return getFileExtension(filePath);
+    return getFileExtension(file.getAbsolutePath());
   }
 
   /**
@@ -242,7 +234,8 @@ public final class FileManager {
     }
 
     if (filePath.indexOf(".") < 0) {
-      throw new IllegalArgumentException("File pathdoes not contain dot character");
+      throw new IllegalArgumentException(
+          "File exstension from " + filePath + " can not be found because path does not contain dot character");
     }
 
     extension = filePath.substring(filePath.lastIndexOf(".") + 1);
@@ -285,8 +278,41 @@ public final class FileManager {
       throw new IllegalArgumentException("Invalid file path.");
     }
 
-    File file = new File(filePath);
+    return getParentFolder(new File(filePath));
+  }
 
-    return getParentFolder(file);
+  /**
+   * Checks if a <code>java.io.File</code> instance exists in the local file
+   * system.
+   * 
+   * @param file the <code>java.io.File</code>instance to validate.
+   * 
+   * @return <code>true</code> if and only if the <code>java.io.File</code>
+   *         instance parameter represents an existent file.
+   */
+  public boolean exists(final File file) {
+    if (file == null) {
+      throw new IllegalArgumentException("File can not be null");
+    }
+
+    return file.exists();
+  }
+
+  /**
+   * Checks if a <code>java.io.File</code> instance exists in the local file
+   * system.
+   * 
+   * @param filePath a valid <code>String</code> path to the file to validate.
+   * 
+   * @return <code>true</code> if and only if the <code>java.io.File</code>
+   *         instance represented by the <code>filePath</code> parameter
+   *         represents an existent file.
+   */
+  public boolean exists(final String filePath) {
+    if (StringUtils.getInstance().isBlank(filePath)) {
+      throw new IllegalArgumentException("Invalid file path.");
+    }
+
+    return exists(new File(filePath));
   }
 }
