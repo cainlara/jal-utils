@@ -11,11 +11,11 @@ import java.nio.file.StandardCopyOption;
  * 
  * @author larajo7
  */
-public final class FileManager {
+public final class FileUtils {
 
-  private static FileManager instance;
+  private static FileUtils instance;
 
-  private FileManager() {
+  private FileUtils() {
     // hide constructor
   }
 
@@ -24,9 +24,9 @@ public final class FileManager {
    * 
    * @return an instance of this class.
    */
-  public static FileManager getInstance() {
+  public static FileUtils getInstance() {
     if (instance == null) {
-      instance = new FileManager();
+      instance = new FileUtils();
     }
 
     return instance;
