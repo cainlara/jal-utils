@@ -1,4 +1,4 @@
-package io.github.cainlara.jalutilsmessage;
+package io.github.cainlara.jalutils.message;
 
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
