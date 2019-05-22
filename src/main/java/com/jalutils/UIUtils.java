@@ -6,6 +6,12 @@ import java.awt.Toolkit;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
+/**
+ * Provides utilities to manage JFrame and JDialog locations. This class is
+ * intended to be used as a Singleton Pattern implementation.
+ * 
+ * @author jalara
+ */
 public class UIUtils {
   private static UIUtils instance;
 
