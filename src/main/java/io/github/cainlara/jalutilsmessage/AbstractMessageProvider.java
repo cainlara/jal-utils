@@ -1,4 +1,4 @@
-package com.jalutils.message;
+package io.github.cainlara.jalutilsmessage;
 
 public abstract class AbstractMessageProvider {
 

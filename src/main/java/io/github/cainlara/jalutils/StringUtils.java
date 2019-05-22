@@ -1,4 +1,4 @@
-package com.jalutils;
+package io.github.cainlara.jalutils;
 
 /**
  * Provides <code>String</code> class utilities. This class is intended to be

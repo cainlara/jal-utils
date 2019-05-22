@@ -1,4 +1,4 @@
-package com.jalutils.image;
+package io.github.cainlara.jalutils.image;
 
 import java.awt.Image;
 import java.net.URL;

@@ -1,4 +1,4 @@
-package com.jalutils;
+package io.github.cainlara.jalutils;
 
 import java.io.File;
 import java.io.IOException;

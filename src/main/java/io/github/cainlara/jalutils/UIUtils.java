@@ -1,4 +1,4 @@
-package com.jalutils;
+package io.github.cainlara.jalutils;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
