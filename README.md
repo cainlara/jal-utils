@@ -1,13 +1,13 @@
 # jal-utils
 Utilitary library
 
-##Messaging Locale
+## Messaging Locale
 Describe usage
-###AbstractMessageProvider
+### AbstractMessageProvider
 Implementation example
-##Image/ImageIcon generation
+## Image/ImageIcon generation
 Describe usage
-###AbstractImageProvider
+### AbstractImageProvider
 Implementation example
-##Files
-##UIUtils
+## Files
+## UIUtils
