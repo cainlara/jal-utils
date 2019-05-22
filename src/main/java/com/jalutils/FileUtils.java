@@ -6,10 +6,10 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
 /**
- * Handles file system operations. This class is implemented to be used as a
- * Singleton Pattern.
+ * Handles file system operations. This class is intended to be used as a
+ * Singleton Pattern implementation.
  * 
- * @author larajo7
+ * @author jalara
  */
 public final class FileUtils {
 
