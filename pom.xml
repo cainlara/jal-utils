@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.cainlara</groupId>
   <artifactId>jal-utils</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.0b</version>
   <packaging>jar</packaging>
 
   <name>JAL utils</name>
@@ -43,6 +43,10 @@
       <id>ossrh</id>
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
   </distributionManagement>
 
   <build>
