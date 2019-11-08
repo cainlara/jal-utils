@@ -13,6 +13,7 @@ import java.nio.file.StandardCopyOption;
  */
 public final class FileUtils {
   private static final String FILE_CANT_BE_NULL_MESSAGE = "File can not be null";
+  private static final String DOT_CHARACTER = ".";
 
   private static FileUtils instance;
 
@@ -52,9 +53,16 @@ public final class FileUtils {
     }
 
     String fixedFileName = fileName;
+    String fixedExtension = null;
+    
+    if (extension.startsWith(DOT_CHARACTER)) {
+      fixedExtension = extension;
+    } else {
+      fixedExtension = String.join("", DOT_CHARACTER, extension);
+    }
 
-    if (!fixedFileName.endsWith(extension)) {
-      fixedFileName += extension;
+    if (!fixedFileName.endsWith(fixedExtension)) {
+      fixedFileName += fixedExtension;
     }
 
     return fixedFileName;
