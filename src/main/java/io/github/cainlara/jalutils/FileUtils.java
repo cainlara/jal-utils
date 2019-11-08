@@ -12,6 +12,7 @@ import java.nio.file.StandardCopyOption;
  * @author jalara
  */
 public final class FileUtils {
+  private static final String FILE_CANT_BE_NULL_MESSAGE = "File can not be null";
 
   private static FileUtils instance;
 
@@ -73,12 +74,16 @@ public final class FileUtils {
    *                     <code>null</code>.
    */
   public void copyFile(final File sourceFile, final File targetFile) throws IOException {
-    if (sourceFile == null || !sourceFile.exists()) {
-      throw new IOException("Source file (" + sourceFile.getAbsolutePath() + ") does not exist.");
+    if (sourceFile == null) {
+      throw new IOException("Source file can not be null.");
     }
 
     if (targetFile == null) {
       throw new IOException("Target file can not be null.");
+    }
+
+    if (!sourceFile.exists()) {
+      throw new IOException("Source file (" + sourceFile.getAbsolutePath() + ") does not exist.");
     }
 
     Files.copy(sourceFile.toPath(), targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
@@ -109,7 +114,7 @@ public final class FileUtils {
       throw new IOException(file2delete.getAbsolutePath() + " is a Folder.");
     }
 
-    return file2delete.delete();
+    return Files.deleteIfExists(file2delete.toPath());
   }
 
   /**
@@ -158,7 +163,7 @@ public final class FileUtils {
     }
 
     if (folder2Delete.listFiles().length == 0) {
-      return folder2Delete.delete();
+      return Files.deleteIfExists(folder2Delete.toPath());
     }
 
     for (File file : folder2Delete.listFiles()) {
@@ -166,14 +171,12 @@ public final class FileUtils {
         if (!deleteFolder(file)) {
           throw new IOException("Impossible to delete folder " + file.getAbsolutePath());
         }
-      } else if (file.isFile()) {
-        if (!deleteFile(file)) {
-          throw new IOException("Impossible to delete file " + file.getAbsolutePath());
-        }
+      } else if (file.isFile() && !deleteFile(file)) {
+        throw new IOException("Impossible to delete file " + file.getAbsolutePath());
       }
     }
 
-    return folder2Delete.delete();
+    return Files.deleteIfExists(folder2Delete.toPath());
   }
 
   /**
@@ -208,7 +211,7 @@ public final class FileUtils {
    */
   public String getFileExtension(final File file) {
     if (file == null) {
-      throw new IllegalArgumentException("File can not be null");
+      throw new IllegalArgumentException(FILE_CANT_BE_NULL_MESSAGE);
     }
 
     return getFileExtension(file.getAbsolutePath());
@@ -233,12 +236,12 @@ public final class FileUtils {
       throw new IllegalArgumentException("File path is invalid");
     }
 
-    if (filePath.indexOf(".") < 0) {
+    if (filePath.indexOf('.') < 0) {
       throw new IllegalArgumentException(
           "File exstension from " + filePath + " can not be found because path does not contain dot character");
     }
 
-    extension = filePath.substring(filePath.lastIndexOf(".") + 1);
+    extension = filePath.substring(filePath.lastIndexOf('.') + 1);
 
     return extension;
   }
@@ -254,7 +257,7 @@ public final class FileUtils {
    */
   public File getParentFolder(final File file) {
     if (file == null) {
-      throw new IllegalArgumentException("File can not be null");
+      throw new IllegalArgumentException(FILE_CANT_BE_NULL_MESSAGE);
     }
 
     if (!file.exists()) {
@@ -292,7 +295,7 @@ public final class FileUtils {
    */
   public boolean exists(final File file) {
     if (file == null) {
-      throw new IllegalArgumentException("File can not be null");
+      throw new IllegalArgumentException(FILE_CANT_BE_NULL_MESSAGE);
     }
 
     return file.exists();
