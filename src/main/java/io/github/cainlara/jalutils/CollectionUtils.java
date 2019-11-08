@@ -33,7 +33,7 @@ public final class CollectionUtils {
    * @return
    *         <ul>
    *         <li><code>null</code> if the input is <code>null</code>.</li>
-   *         <li>An empty <code>ArrayList</code> if input&apos;s lenght is 0.</li>
+   *         <li>An empty <code>ArrayList</code> if lenght of input is 0.</li>
    *         <li>An <code>ArrayList</code> of <code>String</code> containing every
    *         single characther from the original input, including blank
    *         spaces.</li>
@@ -53,7 +53,7 @@ public final class CollectionUtils {
    * @return
    *         <ul>
    *         <li><code>null</code> if the input is <code>null</code>.</li>
-   *         <li>An empty <code>ArrayList</code> if input&apos;s lenght is 0.</li>
+   *         <li>An empty <code>ArrayList</code> if lenght of input is 0.</li>
    *         <li>An <code>ArrayList</code> of <code>String</code> containing every
    *         single characther from the original input, including blank
    *         spaces.</li>
@@ -66,10 +66,9 @@ public final class CollectionUtils {
       list = new ArrayList<>();
 
       for (char c : str.toCharArray()) {
-        if (!String.valueOf(c).equals(" ")) {
+        if (!String.valueOf(c).equals(" ") || (String.valueOf(c).equals(" ") && includeBlanks)) {
           list.add(String.valueOf(c));
-        } else if (includeBlanks)
-          list.add(String.valueOf(c));
+        }
       }
     }
 
@@ -138,9 +137,9 @@ public final class CollectionUtils {
    * <code>null</code>.</li>
    * <li>If one of the list is empty (<code>isEmpty() == true</code>) both lists
    * should be empty.</li>
-   * <li>The sizes of both list must be the same <b>and</b> each element in one list
-   * must have one and only one reflected element in the other list, regardless of
-   * their positions in their respective lists.</li>
+   * <li>The sizes of both list must be the same <b>and</b> each element in one
+   * list must have one and only one reflected element in the other list,
+   * regardless of their positions in their respective lists.</li>
    * </ul>
    * 
    * @param l1 List 1.
