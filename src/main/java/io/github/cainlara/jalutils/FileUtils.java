@@ -162,19 +162,19 @@ public final class FileUtils {
       throw new IOException(folder2Delete.getAbsolutePath() + " is a File.");
     }
 
-    if (folder2Delete.listFiles() == null || folder2Delete.listFiles().length == 0) {
+    File[] folderContent = folder2Delete.listFiles();
+
+    if (folderContent == null || folderContent.length == 0) {
       return Files.deleteIfExists(folder2Delete.toPath());
     }
 
-    if (folder2Delete.listFiles() != null) {
-      for (File file : folder2Delete.listFiles()) {
-        if (file.isDirectory()) {
-          if (!deleteFolder(file)) {
-            throw new IOException("Impossible to delete folder " + file.getAbsolutePath());
-          }
-        } else if (file.isFile() && !deleteFile(file)) {
-          throw new IOException("Impossible to delete file " + file.getAbsolutePath());
+    for (File file : folderContent) {
+      if (file.isDirectory()) {
+        if (!deleteFolder(file)) {
+          throw new IOException("Impossible to delete folder " + file.getAbsolutePath());
         }
+      } else if (file.isFile() && !deleteFile(file)) {
+        throw new IOException("Impossible to delete file " + file.getAbsolutePath());
       }
     }
 
