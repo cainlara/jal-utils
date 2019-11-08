@@ -32,6 +32,20 @@
     </developer>
   </developers>
 
+  <profiles>
+    <profile>
+      <id>sonar</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <sonar.host.url>
+          http://localhost:9000
+        </sonar.host.url>
+      </properties>
+    </profile>
+  </profiles>
+
   <scm>
     <connection>scm:git:git://github.com/cainlara/jal-utils.git</connection>
     <developerConnection>scm:git:ssh://github.com/cainlara/jal-utils.git</developerConnection>
@@ -55,6 +69,12 @@
       <artifactId>junit</artifactId>
       <version>4.12</version>
       <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.sonarsource.scanner.maven</groupId>
+      <artifactId>sonar-maven-plugin</artifactId>
+      <version>3.2</version>
     </dependency>
   </dependencies>
 
