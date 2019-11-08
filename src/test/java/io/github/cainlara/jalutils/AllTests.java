@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ StringUtilsTest.class, CollectionUtilsTest.class })
+@SuiteClasses({ StringUtilsTest.class, CollectionUtilsTest.class, FileUtilsTest.class })
 public class AllTests {
   //Wrapper class
 }

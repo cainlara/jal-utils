@@ -58,5 +58,18 @@ public class CollectionUtilsTest {
 
     assertFalse("Not null, not empty lists must be equal", CollectionUtils.getInstance().listsAreEqual(l1, l2));
   }
+  
+  @Test
+  public void nullStringNullListEqualsTest() {
+    assertTrue("Null string and null list must be equal", CollectionUtils.getInstance().toList(null) == null);
+  }
+  
+  @Test
+  public void notNullStringNotNullListEqualsTest() {
+    List<String> l1 = Arrays.asList("A", "B", "C", "D", "E");
+    List<String> l2 = CollectionUtils.getInstance().toList("ABCDE");
+    
+    assertTrue("Not null string and not null list must be equal", CollectionUtils.getInstance().listsAreEqual(l1, l2));
+  }
 
 }
