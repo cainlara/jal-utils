@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.cainlara</groupId>
   <artifactId>jal-utils</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2-d</version>
   <packaging>jar</packaging>
 
   <name>JAL utils</name>
@@ -34,32 +34,18 @@
 
   <profiles>
     <profile>
-      <id>sonar</id>
+      <id>jalUtilsProfile</id>
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
-      <properties>
-        <sonar.host.url>
-          http://localhost:9000
-        </sonar.host.url>
-      </properties>
     </profile>
   </profiles>
 
-  <scm>
-    <connection>scm:git:git://github.com/cainlara/jal-utils.git</connection>
-    <developerConnection>scm:git:ssh://github.com/cainlara/jal-utils.git</developerConnection>
-    <url>http://github.com/cainlara/jal-utils/tree/master</url>
-  </scm>
-
   <distributionManagement>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
     <repository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      <id>github</id>
+      <name>GitHub OWNER Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/cainlara/jal-utils</url>
     </repository>
   </distributionManagement>
 
@@ -70,70 +56,5 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
-
-    <dependency>
-      <groupId>org.sonarsource.scanner.maven</groupId>
-      <artifactId>sonar-maven-plugin</artifactId>
-      <version>3.2</version>
-    </dependency>
   </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>1.6.8</version>
-        <extensions>true</extensions>
-        <configuration>
-          <serverId>ossrh</serverId>
-          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-          <autoReleaseAfterClose>true</autoReleaseAfterClose>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <version>3.1.0</version>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <goals>
-              <goal>jar-no-fork</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.1.0</version>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <version>1.6</version>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
 </project>
