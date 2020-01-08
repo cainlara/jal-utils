@@ -13,7 +13,7 @@ public final class CollectionUtils {
   }
 
   /**
-   * Retrives the only instance of this class.
+   * Retrieves the only instance of this class.
    * 
    * @return an instance of this class.
    */
